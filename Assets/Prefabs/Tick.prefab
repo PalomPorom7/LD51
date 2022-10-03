@@ -127,9 +127,11 @@ MonoBehaviour:
   currentScale: {x: 0, y: 0, z: 0}
   endScale: {x: 0.1, y: 0.1, z: 1}
   animationSpeed: 1
+  explositionPrefab: {fileID: 6014595533537885228, guid: c7aa46b001f3832469f6a8521028f826, type: 3}
   sr: {fileID: 0}
   originalPosition: {x: 0, y: 0, z: 0}
   size: 1
+  isActive: 0
   health: 0
 --- !u!50 &6237833125134360748
 Rigidbody2D:

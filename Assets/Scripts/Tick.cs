@@ -4,11 +4,12 @@ using UnityEngine;
 
 public class Tick : AnimatedSpawn
 {
+    public GameObject explositionPrefab;
     public Coroutine currentMovement;
     public SpriteRenderer sr;
     public Vector3 originalPosition;
     public int size = 1;
-
+    public bool isActive = false;
     public int health;
 
     private void Start()
@@ -33,15 +34,19 @@ public class Tick : AnimatedSpawn
     }
     public void Activate()
     {
+        isActive = true;
         health = size;
         sr.color = Color.red;
         currentMovement = StartCoroutine(Move(Vector3.zero, 0.1f));
     }
     public void Deactivate()
     {
+        GameObject g = Instantiate(explositionPrefab);
+        g.transform.position = transform.position;
+
         StopCoroutine(currentMovement);
         sr.color = Color.black;
-        StartCoroutine(Move(originalPosition, 10));
+        currentMovement = StartCoroutine(Move(originalPosition, 10));
     }
     private IEnumerator Move(Vector3 endPosition, float speed)
     {
@@ -51,8 +56,9 @@ public class Tick : AnimatedSpawn
         {
             t += Time.deltaTime * speed;
             transform.position = Vector3.Lerp(startPosition, endPosition, t);
-            yield return null;
+            yield return new WaitForFixedUpdate();
         }while(t < 1);
+        isActive = false;
     }
     public void OnTriggerEnter2D(Collider2D c)
     {

@@ -80,16 +80,26 @@ public class GameManager : MonoBehaviour
         do
         {
             random = Random.Range(0, 60);
-        }while(random % 5 == 0);
+        }while(random % 5 == 0 || ticks.ticks[random].isActive);
 
         return random;
     }
     private int Random2()
     {
-        return Random.Range(0, 6) * 10 + 5;
+        int random;
+        do
+        {
+            random = Random.Range(0, 6) * 10 + 5;
+        } while (ticks.ticks[random].isActive);
+        return random;
     }
     private int Random3()
     {
-        return Random.Range(0, 6) * 10;
+        int random;
+        do
+        {
+            random = Random.Range(0, 6) * 10;
+        } while (ticks.ticks[random].isActive);
+        return random;
     }
 }
