@@ -9,6 +9,8 @@ public class InputManager : MonoBehaviour
     public float horizontal;
     public float handMovementSpeed;
 
+    public bool verticalIsActive;
+
     private void Update()
     {
         if(Input.GetKeyDown(KeyCode.Escape))
@@ -17,11 +19,11 @@ public class InputManager : MonoBehaviour
         }
         horizontal  = Input.GetAxis("Horizontal");
 
-        if(Input.GetButtonDown("Up"))
+        if(verticalIsActive && Input.GetButtonDown("Up"))
         {
             clock.ChangeHand(1);
         }
-        if(Input.GetButtonDown("Down"))
+        if(verticalIsActive && Input.GetButtonDown("Down"))
         {
             clock.ChangeHand(-1);
         }

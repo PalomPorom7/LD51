@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Clock : MonoBehaviour
 {
+    public bool[] handsActive;
     public Hand[] clockHands;
 
     public float[]  handValues;
@@ -18,24 +19,27 @@ public class Clock : MonoBehaviour
 
         clockHands[selectedHandIndex].SetValue(handValues[selectedHandIndex]);
     }
-    public bool ChangeHand(int direction)
+    public void ChangeHand(int direction)
     {
+        
         selectedHandIndex += direction;
 
         if(selectedHandIndex == -1)
         {
             selectedHandIndex = 0;
-            return false;
         }
         if(selectedHandIndex == clockHands.Length)
         {
             selectedHandIndex = clockHands.Length - 1;
-            return false;
         }
-        return true;
+        if(!handsActive[selectedHandIndex])
+        {
+            selectedHandIndex -= direction;
+        }
     }
     public IEnumerator SpawnHand(int handIndex)
     {
         yield return StartCoroutine(clockHands[handIndex].Spawn());
+        handsActive[handIndex] = true;
     }
 }

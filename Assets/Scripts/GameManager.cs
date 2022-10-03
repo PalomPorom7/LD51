@@ -9,6 +9,9 @@ public class GameManager : MonoBehaviour
     public TickSpawner ticks;
 
     public Text counter;
+    public InputManager im;
+    public GameObject horizontalControls;
+    public GameObject verticalControls;
     public int waveNumber;
 
     private void Start()
@@ -20,6 +23,9 @@ public class GameManager : MonoBehaviour
     {
         yield return StartCoroutine(clock.SpawnHand(0));
         yield return StartCoroutine(ticks.SpawnTicks());
+
+        counter.gameObject.SetActive(true);
+        horizontalControls.SetActive(true);
 
         StartCoroutine(StartWaves());
     }
@@ -44,6 +50,8 @@ public class GameManager : MonoBehaviour
             yield return new WaitForSeconds(7);
         }
         StartCoroutine(clock.SpawnHand(1));
+        im.verticalIsActive = true;
+        verticalControls.SetActive(true);
         for(int i = 0; i != 6; ++i)
         {
             counter.text = ++waveNumber + "";
