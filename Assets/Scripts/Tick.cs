@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Tick : AnimatedSpawn
 {
+    GameManager gm;
     public GameObject explositionPrefab;
     public Coroutine currentMovement;
     public SpriteRenderer sr;
@@ -14,8 +15,8 @@ public class Tick : AnimatedSpawn
 
     private void Start()
     {
+        gm = FindObjectOfType<GameManager>();
         sr = GetComponent<SpriteRenderer>();
-//        c = sr.color;
     }
     public void Initialize()
     {
@@ -62,7 +63,9 @@ public class Tick : AnimatedSpawn
     }
     public void OnTriggerEnter2D(Collider2D c)
     {
-        if(--health == 0)
+        if(c.tag == "Player")
+            gm.TakeDamage();
+        else if(--health == 0)
             Deactivate();
     }
 }

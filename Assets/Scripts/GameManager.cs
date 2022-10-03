@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    public GameObject retryButton;
     public Clock clock;
     public TickSpawner ticks;
 
@@ -14,6 +15,16 @@ public class GameManager : MonoBehaviour
     public GameObject verticalControls;
     public int waveNumber;
 
+    public void TakeDamage()
+    {
+        Time.timeScale = 0;
+        retryButton.SetActive(true);
+    }
+    public void Reset()
+    {
+        Time.timeScale = 1;
+        Application.LoadLevel(Application.loadedLevel);
+    }
     private void Start()
     {
         waveNumber = 0;
