@@ -1,14 +1,19 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
     public Clock clock;
     public TickSpawner ticks;
 
+    public Text counter;
+    public int waveNumber;
+
     private void Start()
     {
+        waveNumber = 0;
         StartCoroutine(Setup());
     }
     private IEnumerator Setup()
@@ -22,6 +27,7 @@ public class GameManager : MonoBehaviour
     {
         for(int i = 0; i != 6; ++i)
         {
+            counter.text = ++waveNumber + "";
             ticks.ticks[Random1()].Activate();
             yield return new WaitForSeconds(1);
             ticks.ticks[Random1()].Activate();
@@ -40,6 +46,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(clock.SpawnHand(1));
         for(int i = 0; i != 6; ++i)
         {
+            counter.text = ++waveNumber + "";
             ticks.ticks[Random2()].Activate();
             yield return new WaitForSeconds(1);
             ticks.ticks[Random1()].Activate();
@@ -58,6 +65,7 @@ public class GameManager : MonoBehaviour
         StartCoroutine(clock.SpawnHand(2));
         for(int i = 0; i != 6; ++i)
         {
+            counter.text = ++waveNumber + "";
             ticks.ticks[Random3()].Activate();
             yield return new WaitForSeconds(1);
             ticks.ticks[Random2()].Activate();

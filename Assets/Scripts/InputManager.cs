@@ -11,6 +11,10 @@ public class InputManager : MonoBehaviour
 
     private void Update()
     {
+        if(Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
         horizontal  = Input.GetAxis("Horizontal");
 
         if(Input.GetButtonDown("Up"))
