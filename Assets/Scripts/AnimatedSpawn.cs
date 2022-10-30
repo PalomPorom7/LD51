@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+/*
+    inherited class to spawn various things
+    on screen by lerping their scale
+*/
 public class AnimatedSpawn : MonoBehaviour
 {
     public Vector3  startScale,

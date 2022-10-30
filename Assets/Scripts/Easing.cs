@@ -1,4 +1,6 @@
 using UnityEngine;
+
+
 public enum EasingType
 {
     Linear,
@@ -13,7 +15,10 @@ public enum EasingType
     ElasticIn,  ElasticOut, ElasticInOut,
     BounceIn,   BounceOut,  BounceInOut
 }
-
+/*
+    This class is used to alter the effects
+    of lerp unclamped to produce pretty animations
+*/
 public static class Easing
 {
     private const float PI = 3.14159f;
